@@ -1,8 +1,10 @@
+// API Routes - Use this fle to add more routes
+
 var bodyParser = require("body-parser");
 var dbClient = require("./SQLite.js");
-var configurations = require("./Configuration.js");
+var jsonResponses = require("./SampleJson.js");
 
-configurations = new configurations();
+jsonResponses = new jsonResponses();
 dbClient = new dbClient();
 
 function mockHeader(res)
@@ -33,24 +35,24 @@ var appRouter = function (app){
         {
             if(feedId == 1)
             {
-                res.status(200).send(JSON.parse(configurations.get_Json1));
+                res.status(200).send(JSON.parse(jsonResponses.get_Json1));
             }
 
             if(feedId == 2)
             {
-                res.status(200).send(JSON.parse(configurations.get_Json2));
+                res.status(200).send(JSON.parse(jsonResponses.get_Json2));
             }
 
             if(feedId == 3)
             {
-                res.status(200).send(JSON.parse(configurations.get_Json3));
+                res.status(200).send(JSON.parse(jsonResponses.get_Json3));
             }
         }
     });
 
     app.get('/api/getArtists', (req, res) => {
         mockHeader(res);
-        const statement = 'Select * from ' + configurations.get_ArtistTable+ ";";
+        const statement = 'Select * from ' + jsonResponses.get_ArtistTable+ ";";
         dbClient.executeQuery(statement).then(function(text){
             res.status(200).send(text);
         })
@@ -77,7 +79,7 @@ var appRouter = function (app){
 
         if(!error)
         {
-            var statement = 'INSERT INTO ' +  configurations.get_ArtistTable +
+            var statement = 'INSERT INTO ' +  jsonResponses.get_ArtistTable +
             ' Values(\"' + artistName + '\",\"'  + genre + '");';
             dbClient.executeQuery(statement).then(function(text){
                 if(text!== 'undefined')

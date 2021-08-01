@@ -1,15 +1,16 @@
+//Sqlite Helper Class
 var SQLite = function () { };
 var sqlite3 = require('sqlite3');
 
-var configurations = require("./Configuration.js");
-configurations = new configurations();
+var sampleJson = require("./SampleJson.js");
+sampleJson = new sampleJson();
 
-var states = configurations.get_States;
+var states = sampleJson.get_States;
 
 function executeQuery(tableQuery) {
     try {
         var valToReturn = new Promise(function (resolve, reject) {
-            db = new sqlite3.Database(configurations.get_DbName, (err) => {
+            db = new sqlite3.Database(sampleJson.get_DbName, (err) => {
                 if (err) {
                     reject(err);
                 }
@@ -66,7 +67,7 @@ SQLite.prototype = Object.create({}, {
     setUpDBAndTables: {
         value: function () {
             this.removeDataBase();
-            var artist_table = 'Create Table if not exists ' + configurations.get_ArtistTable + '(artist_name text PRIMARY KEY , genre text)'
+            var artist_table = 'Create Table if not exists ' + sampleJson.get_ArtistTable + '(artist_name text PRIMARY KEY , genre text)'
             console.log (artist_table);
             executeQuery(artist_table).then(function (text) {
                 if (text != states.Failed) {
@@ -79,7 +80,7 @@ SQLite.prototype = Object.create({}, {
                 var artist = ["Metallica", "Beethoven", "Green Day", "Coldplay", "Iron Maiden", "Elton John"];
                 var genre =  ["metal", "classical", "punk rock", "pop", "metal", "pop"];
                 for (let i = 0; i < artist.length; i++) {
-                    var statement = 'INSERT INTO ' +  configurations.get_ArtistTable +
+                    var statement = 'INSERT INTO ' +  sampleJson.get_ArtistTable +
                     ' Values(\"' + artist[i] + '\",\"'  + genre[i] + '");';
                     console.log (statement);
                     executeQuery(statement).then(function (text) {

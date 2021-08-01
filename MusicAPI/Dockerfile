@@ -1,3 +1,4 @@
+#In case you want to use docker
 # Use existing docker image as base
 FROM node:alpine
 

@@ -1,4 +1,4 @@
-var Configuration = function () { };
+var SampleJson = function () { };
 
 var json1 = `
 [
@@ -123,7 +123,7 @@ var states = {
     Failed: "failed",
 }
 
-Configuration.prototype = Object.create({}, {
+SampleJson.prototype = Object.create({}, {
 
     get_States: { get: function () { return states } },
     get_DbName: { get: function () { return db_Name } },
@@ -133,4 +133,4 @@ Configuration.prototype = Object.create({}, {
     get_Json3: { get: function () { return json3 } }, 
 });
 
-module.exports = Configuration;
+module.exports = SampleJson;
