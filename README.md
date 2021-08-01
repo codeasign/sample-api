@@ -13,6 +13,12 @@ HTTP Request Method implemented
 ```
 Response Format: JSON
 ```
+Sample Headers
+
+```
+![image](https://user-images.githubusercontent.com/49246927/127783673-f391661e-c711-4062-8b40-130f72778b28.png)
+```
+
 
 ##  API Endpoints
 
